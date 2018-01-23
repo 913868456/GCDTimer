@@ -1,7 +1,6 @@
 # GCDTimer
 Timer  which use GCD to implementation.
-
-it is a elegant way to use GCD implementing a Timer, more easier, avoiding many problems when we use NSTimer.
+It is a elegant way to use GCD implementing a Timer, more easier, avoiding many problems when we use NSTimer.
 
 # Usage
 - import GCDTimer.h GCDTimer.m file to your project.
