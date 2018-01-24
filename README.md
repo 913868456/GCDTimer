@@ -16,7 +16,13 @@ It is an elegant way to use GCD to implement a Timer, more easier,  many problem
 or like this 
 
 ```
-[GCDTimer scheduleTimerWithName:@"vc2" interval:3 leeway:0.1 repeats:YES isMainQueue:YES target:self selector:@selector(test)];
+[GCDTimer scheduleTimerWithName:@"vc2" 
+                       interval:3 
+                         leeway:0.1 
+                        repeats:YES 
+                    isMainQueue:YES 
+                         target:self
+                       selector:@selector(test)];
 ```
 
 # API 
