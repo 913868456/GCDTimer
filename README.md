@@ -29,7 +29,7 @@ or like this
  @param interval      The number of seconds between resumes of the timer.
  @param leeway        The nanosecond leeway for the timer.
  @param repeats       If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be canceled after it resumes.
- @param isMainQueue   If YES, the timer will excute the block in the mainQueue. If NO, the timer will excute it in the globalQueue.
+ @param isMainQueue   If YES, the target will excute the selector in the mainQueue. If NO, the target will excute it in the globalQueue.
  @param target        The target object to execute the selector.
  @param selector      The execution selector of the timer
  */
