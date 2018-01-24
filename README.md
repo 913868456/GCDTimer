@@ -1,6 +1,6 @@
 # GCDTimer
 Timer  which use GCD to implementation.
-It is a elegant way to use GCD implementing a Timer, more easier, avoiding many problems when we use NSTimer.
+It is an elegant way to use GCD to implement a Timer, more easier,  many problems can be avoided when we use GCDTimer.
 
 # Usage
 - import GCDTimer.h GCDTimer.m file to your project.
@@ -23,15 +23,15 @@ or like this
 
 ```
 /**
- 使用GCD创建的计时器 Selector版本
+ Using GCD to initialize a Timer. (Selector Version)
 
- @param name 定时器名
- @param interval 间隔
- @param leeway 时间偏差
- @param repeats 是否重复
- @param isMainQueue 是否在主队列执行任务
- @param target 方法执行对象
- @param selector 需要执行的方法
+ @param name          The timer name
+ @param interval      The number of seconds between resumes of the timer.
+ @param leeway        The nanosecond leeway for the timer.
+ @param repeats       If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be canceled after it resumes.
+ @param isMainQueue   If YES, the timer will excute the block in the mainQueue. If NO, the timer will excute it in the globalQueue.
+ @param target        The target object to execute the selector.
+ @param selector      The execution selector of the timer
  */
 + (void)scheduleTimerWithName:(nonnull NSString *)name 
                      interval:(NSTimeInterval) interval 
@@ -42,14 +42,14 @@ or like this
                      selector:(nonnull SEL)selector;
 
 /**
- 使用GCD创建的计时器 Block版本
+ Using GCD to initialize a Timer. (Block Version)
 
- @param name 定时器名
- @param interval 间隔
- @param leeway 时间偏差
- @param repeats 是否重复
- @param isMainQueue 是否在主队列执行任务
- @param block 需要执行的Block
+ @param name        The timer name
+ @param interval    The number of seconds between resumes of the timer.
+ @param leeway      The nanosecond leeway for the timer.
+ @param repeats     If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be canceled after it resumes.
+ @param isMainQueue If YES, the timer will excute the block in the mainQueue. If NO, the timer will excute it in the globalQueue.
+ @param block       The execution body of the timer
  */
 + (void)scheduleTimerWithName:(nonnull NSString *)name 
                      interval:(NSTimeInterval) interval 
@@ -59,9 +59,9 @@ or like this
                         block:(nonnull dispatch_block_t)block;
 
 /**
- 取消定时器
+ Cancel the Timer 
 
- @param name 定时器名
+ @param name        Name of the timer
  */
 + (void)cancelTimer:(nonnull NSString *)name;
 
