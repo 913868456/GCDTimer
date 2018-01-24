@@ -21,7 +21,13 @@
  @param target 方法执行对象
  @param selector 需要执行的方法
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name interval:(NSTimeInterval) interval leeway:(NSTimeInterval)leeway repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue target:(nonnull id)target selector:(nonnull SEL)selector;
++ (void)scheduleTimerWithName:(nonnull NSString *)name 
+                     interval:(NSTimeInterval) interval
+                       leeway:(NSTimeInterval)leeway 
+                      repeats:(BOOL)repeats 
+                  isMainQueue:(BOOL)isMainQueue 
+                       target:(nonnull id)target 
+                     selector:(nonnull SEL)selector;
 
 /**
  使用GCD创建的计时器 Block版本
@@ -33,7 +39,12 @@
  @param isMainQueue 是否在主队列执行任务
  @param block 需要执行的Block
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name interval:(NSTimeInterval) interval leeway:(NSTimeInterval)leeway repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue block:(nonnull dispatch_block_t)block;
++ (void)scheduleTimerWithName:(nonnull NSString *)name
+                     interval:(NSTimeInterval) interval 
+                       leeway:(NSTimeInterval)leeway
+                      repeats:(BOOL)repeats 
+                  isMainQueue:(BOOL)isMainQueue 
+                        block:(nonnull dispatch_block_t)block;
 
 /**
  取消定时器
