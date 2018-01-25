@@ -9,7 +9,7 @@ It is an elegant way to use GCD to implement a Timer, more easier,  many problem
 ```
     [GCDTimer scheduleTimerWithName:@"vc1" interval:3 leeway:0.1 repeats:NO isMainQueue:YES block:^{
 
-        NSLog(@"test selector");
+        NSLog(@"test!");
     }];
 ```
 
