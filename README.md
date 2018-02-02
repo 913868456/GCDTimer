@@ -4,7 +4,7 @@ It is an elegant way to use GCD to implement a Timer, more easier,  many problem
 
 # Usage
 - import GCDTimer.h GCDTimer.m file to your project.
-- improt GCDTimer.h to the file which you wants to use, and invoke like this.
+- import GCDTimer.h to the file which you wants to use, and invoke like this.
 
 ```
     [GCDTimer scheduleTimerWithName:@"vc1" interval:3 leeway:0.1 repeats:NO isMainQueue:YES block:^{
