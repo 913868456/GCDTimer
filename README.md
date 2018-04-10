@@ -37,7 +37,7 @@ or like this
  @param target The target to perform the selector
  @param selector The selector will to excute
  @return GCDTimer instance
- NOTE: when repeats = YES, you must invoke the method '- (void)invalidate;' to release the GCDTimer instance.
+ NOTE: when repeats = YES, you must invoke the method `- (void)invalidate;` to release the GCDTimer instance.
  */
 + (instancetype)scheduleTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue target:(id)target selector:(SEL)selector;
 
