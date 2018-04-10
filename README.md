@@ -1,13 +1,13 @@
 # GCDTimer
 Timer  which use GCD to implementation.
-It is an elegant way to use GCD to implement a Timer, more easier,  many problems can be avoided when we use GCDTimer.
+It is an elegant way to use GCD to implement a Timer, more easier,  we could't care about the NSTimer's usage in different thread.
 
 # Usage
 - import GCDTimer.h GCDTimer.m file to your project.
 - import GCDTimer.h to the file which you wants to use, and invoke like this.
 
 ```
-    [GCDTimer scheduleTimerWithName:@"vc1" interval:3 leeway:0.1 repeats:NO isMainQueue:YES block:^{
+    [GCDTimer scheduleTimerWithName:@"vc1" interval:3 repeats:NO isMainQueue:YES block:^{
 
         NSLog(@"test!");
     }];
@@ -16,59 +16,48 @@ It is an elegant way to use GCD to implement a Timer, more easier,  many problem
 or like this 
 
 ```
-[GCDTimer scheduleTimerWithName:@"vc2" 
-                       interval:3 
-                         leeway:0.1 
-                        repeats:YES 
-                    isMainQueue:YES 
-                         target:self
-                       selector:@selector(test)];
+    _timer =  [GCDTimer scheduleTimerWithInterval:1 repeats:YES isMainQueue:NO block:^{
+        NSLog(@"testViewController globalQueue executed");
+    }];
 ```
+
+>NOTE: when repeats = YES, you must invoke the method '- (void)invalidate;' to release the GCDTimer instance.
+
+
 
 # API 
 
 ```
 /**
- Using GCD to initialize a Timer. (Selector Version)
+ create a GCDTimer instance, Selector version
 
- @param name          The timer name
- @param interval      The number of seconds between resumes of the timer.
- @param leeway        The nanosecond leeway for the timer.
- @param repeats       If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be canceled after it resumes.
- @param isMainQueue   If YES, the target will excute the selector in the mainQueue. If NO, the target will excute it in the globalQueue.
- @param target        The target object to execute the selector.
- @param selector      The execution selector of the timer
+ @param interval 
+ @param repeats  Whether repeat
+ @param isMainQueue Whether execute the block on the main queue
+ @param target The target to perform the selector
+ @param selector The selector will to excute
+ @return GCDTimer instance
+ NOTE: when repeats = YES, you must invoke the method '- (void)invalidate;' to release the GCDTimer instance.
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name 
-                     interval:(NSTimeInterval) interval 
-                       leeway:(NSTimeInterval)leeway 
-                      repeats:(BOOL)repeats 
-                  isMainQueue:(BOOL)isMainQueue 
-                       target:(nonnull id)target 
-                     selector:(nonnull SEL)selector;
++ (instancetype)scheduleTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue target:(id)target selector:(SEL)selector;
 
 /**
- Using GCD to initialize a Timer. (Block Version)
-
- @param name        The timer name
- @param interval    The number of seconds between resumes of the timer.
- @param leeway      The nanosecond leeway for the timer.
- @param repeats     If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be canceled after it resumes.
- @param isMainQueue If YES, the timer will excute the block in the mainQueue. If NO, the timer will excute it in the globalQueue.
- @param block       The execution body of the timer
+ create a GCDTimer instance, Block version
+ 
+ @param interval 
+ @param repeats Whether repeat
+ @param isMainQueue Whether execute the block on the main queue
+ @param block The block to invoke
+ @return GCDTimer instance
+ NOTE: when repeats = YES, you must invoke the method '- (void)invalidate;' to release the GCDTimer instance.
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name 
-                     interval:(NSTimeInterval) interval 
-                       leeway:(NSTimeInterval)leeway 
-                      repeats:(BOOL)repeats 
-                  isMainQueue:(BOOL)isMainQueue
-                        block:(nonnull dispatch_block_t)block;
++ (instancetype)scheduleTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue block:(dispatch_block_t)block;
 
 /**
- Cancel the Timer 
-
- @param name        Name of the timer
+ cancel timer
  */
-+ (void)cancelTimer:(nonnull NSString *)name;
+- (void)invalidate;
+
+ ...
 
 ```
