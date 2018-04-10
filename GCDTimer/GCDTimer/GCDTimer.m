@@ -106,7 +106,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)dealloc{
-    NSLog(@"GCDTimer was delloc");
     dispatch_source_cancel(timer);
 }
 
