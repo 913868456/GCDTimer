@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TestViewController.h"
 #import "GCDTimer.h"
 
 @interface ViewController ()
@@ -18,28 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [GCDTimer scheduleTimerWithName:@"vc1" interval:3 leeway:0.1 repeats:YES isMainQueue:NO target:self selector:@selector(test)];
+    NSLog(@"开始测试");
     
-    [GCDTimer scheduleTimerWithName:@"vc2" interval:3 leeway:0.1 repeats:YES isMainQueue:YES target:self selector:@selector(test)];
-    
-    
-//    [GCDTimer scheduleTimerWithName:@"vc3" interval:3 leeway:0.1 repeats:NO isMainQueue:YES block:^{
-//
-//        NSLog(@"我是测试内容\n %@",[NSThread currentThread]);
-//    }];
-    
-//    [GCDTimer scheduleTimerWithName:@"vc3" interval:3 leeway:0.1 repeats:YES isMainQueue:NO block:^{
-//
-//        NSLog(@"我是测试内容\n %@",[NSThread currentThread]);
-//    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)test{
-    
-    NSLog(@"我是测试内容\n %@",[NSThread currentThread]);
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self presentViewController:[[TestViewController alloc] init] animated:YES completion:nil];
 }
-
 
 
 - (void)didReceiveMemoryWarning {

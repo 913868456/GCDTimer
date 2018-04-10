@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CB353F9207C6C530006F77D /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB353F8207C6C530006F77D /* TestViewController.m */; };
 		FF5481BB2016C99F00B1838E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5481BA2016C99F00B1838E /* AppDelegate.m */; };
 		FF5481BE2016C99F00B1838E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5481BD2016C99F00B1838E /* ViewController.m */; };
 		FF5481C12016C99F00B1838E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5481BF2016C99F00B1838E /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CB353F7207C6C530006F77D /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		1CB353F8207C6C530006F77D /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		FF5481B62016C99E00B1838E /* GCDTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCDTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5481B92016C99F00B1838E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF5481BA2016C99F00B1838E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				FF5481BA2016C99F00B1838E /* AppDelegate.m */,
 				FF5481BC2016C99F00B1838E /* ViewController.h */,
 				FF5481BD2016C99F00B1838E /* ViewController.m */,
+				1CB353F7207C6C530006F77D /* TestViewController.h */,
+				1CB353F8207C6C530006F77D /* TestViewController.m */,
 				FF5481BF2016C99F00B1838E /* Main.storyboard */,
 				FF5481C22016C99F00B1838E /* Assets.xcassets */,
 				FF5481C42016C99F00B1838E /* LaunchScreen.storyboard */,
@@ -151,6 +156,7 @@
 				FF5481BE2016C99F00B1838E /* ViewController.m in Sources */,
 				FF5481C92016C99F00B1838E /* main.m in Sources */,
 				FF5481BB2016C99F00B1838E /* AppDelegate.m in Sources */,
+				1CB353F9207C6C530006F77D /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

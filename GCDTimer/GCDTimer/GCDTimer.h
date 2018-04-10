@@ -8,49 +8,64 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GCDTimer : NSObject
 
 /**
- 使用GCD创建的计时器 Selector版本
+ 使用GCD创建的定时器 Selector版本
 
- @param name 定时器名
  @param interval 间隔
- @param leeway 时间偏差
  @param repeats 是否重复
  @param isMainQueue 是否在主队列执行任务
  @param target 方法执行对象
  @param selector 需要执行的方法
+ @return GCDTimer实例对象
+ NOTE: 当 repeat = YES,不再使用定时器时,要调用 - (void)invalidate 方法去释放GCDTimer对象
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name 
-                     interval:(NSTimeInterval) interval
-                       leeway:(NSTimeInterval)leeway 
-                      repeats:(BOOL)repeats 
-                  isMainQueue:(BOOL)isMainQueue 
-                       target:(nonnull id)target 
-                     selector:(nonnull SEL)selector;
++ (instancetype)scheduleTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue target:(id)target selector:(SEL)selector;
 
 /**
- 使用GCD创建的计时器 Block版本
-
- @param name 定时器名
+ 使用GCD创建的定时器 Block版本
+ 
  @param interval 间隔
- @param leeway 时间偏差
  @param repeats 是否重复
  @param isMainQueue 是否在主队列执行任务
  @param block 需要执行的Block
+ @return GCDTimer对象
+ NOTE: 当 repeat = YES,不再使用定时器时,要调用 - (void)invalidate 方法去释放GCDTimer对象
  */
-+ (void)scheduleTimerWithName:(nonnull NSString *)name
-                     interval:(NSTimeInterval) interval 
-                       leeway:(NSTimeInterval)leeway
-                      repeats:(BOOL)repeats 
-                  isMainQueue:(BOOL)isMainQueue 
-                        block:(nonnull dispatch_block_t)block;
++ (instancetype)scheduleTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue block:(dispatch_block_t)block;
+
+/**
+ 使用GCD创建的定时器 Block版本
+
+ @param interval 间隔
+ @param repeats 是否重复
+ @param isMainQueue 是否在主队列执行任务
+ @param block 需要执行的Block
+ @return GCDTimer对象
+ NOTE: 当 repeat = YES,不再使用定时器时,要调用 - (void)invalidate 方法去释放GCDTimer对象
+ */
+- (instancetype)initTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue block:(dispatch_block_t)block;
+
+/**
+ 
+
+ @param interval 间隔
+ @param repeats 是否重复
+ @param isMainQueue 是否在主队列执行任务
+ @param target 方法执行对象
+ @param selector 需要执行的方法
+ @return GCDTmer 实例对象
+ NOTE: 当 repeat = YES,不再使用定时器时,要调用 - (void)invalidate 方法去释放GCDTimer对象
+ */
+- (instancetype)initTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue target:(id)target selector:(SEL)selector;
 
 /**
  取消定时器
-
- @param name 定时器名
  */
-+ (void)cancelTimer:(nonnull NSString *)name;
+- (void)invalidate;
 
+NS_ASSUME_NONNULL_END
 @end
