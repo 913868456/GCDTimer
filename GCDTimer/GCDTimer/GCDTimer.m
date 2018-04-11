@@ -16,11 +16,12 @@ Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
 
-@implementation GCDTimer{
-    dispatch_source_t timer;
-}
+@interface GCDTimer ()
 
-#pragma mark - Public
+@property (nonatomic, strong)dispatch_source_t timer;
+@end
+
+@implementation GCDTimer
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,14 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initTimerWithInterval:(NSTimeInterval) interval repeats:(BOOL)repeats isMainQueue:(BOOL)isMainQueue block:(dispatch_block_t)block{
     
     NSAssert(block, @"block can't be nil");
-    
+    __weak typeof(self) weakSelf = self;
     if (self = [super init]) {
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (!timer) {
-            timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        if (!_timer) {
+            _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         }
-        dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(timer, ^{
+        dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
             
             if (isMainQueue) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -54,10 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
                 block();
             }
             if (!repeats) {
-                dispatch_source_cancel(timer);
+                dispatch_source_cancel(weakSelf.timer);
             }
         });
-        dispatch_resume(timer);
+        dispatch_resume(_timer);
     }
     return self;
 }
@@ -67,14 +68,17 @@ NS_ASSUME_NONNULL_BEGIN
     NSAssert(target, @"target can't be nil");
     NSAssert(selector, @"selector can't be nil");
     
+    __weak typeof(target) weakTarget = target;
+    __weak typeof(self)   weakSelf   = self;
+    
     if (self = [super init]) {
         dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        __weak typeof(target) weakTarget = target;
-        if (!timer) {
-            timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+       
+        if (!_timer) {
+            _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         }
-        dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(timer, ^{
+        dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);
+        dispatch_source_set_event_handler(_timer, ^{
             
             if (isMainQueue) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -93,20 +97,20 @@ NS_ASSUME_NONNULL_BEGIN
                 }
             }
             if (!repeats) {
-                dispatch_source_cancel(timer);
+                dispatch_source_cancel(weakSelf.timer);
             }
         });
-        dispatch_resume(timer);
+        dispatch_resume(_timer);
     }
     return self;
 }
 
 - (void)invalidate{
-    dispatch_source_cancel(timer);
+    dispatch_source_cancel(_timer);
 }
 
 - (void)dealloc{
-    dispatch_source_cancel(timer);
+    dispatch_source_cancel(_timer);
 }
 
 NS_ASSUME_NONNULL_END
