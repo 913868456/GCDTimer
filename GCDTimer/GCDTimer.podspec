@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'GCDTimer'
   s.summary      = 'A timer which use GCD to implement it.'
-  s.version      = '1.0.2'
+  s.version      = '1.0.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'linguofang' => '913868456@qq.com' }
   s.homepage     = 'https://github.com/913868456/GCDTimer'
